@@ -1,0 +1,23 @@
+{% extends "main/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block href%}
+<a class="nav-item nav-link" href="{% url 'index' %}">My tickets</a>
+<a class="nav-item nav-link" href="{% url 'new_ticket' %}">Write new one</a>
+{% endblock %}
+
+{% block auth %}
+<form method="post" style="margin-top: 2%; max-width: 50%; margin-left: 25%; margin-right: 25%;">
+    <h1>Login</h1>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <small>Don't have an account?</small>
+    <a href="{% url 'register' %}"><small>Register</small></a><br><br>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form> 
+{% endblock %}

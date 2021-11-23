@@ -1,0 +1,41 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block href%}
+<a class="nav-item nav-link active" href="{% url 'index' %}">My tickets<span class="sr-only">(current)</span></a>
+<a class="nav-item nav-link" href="{% url 'new_ticket' %}">Write new one</a>
+{% endblock %}
+
+{% block list %}
+  {% if tasks %}
+      {% for el in tasks %}
+      <div style="max-width: 70%; margin-left: 15%; margin-right: 15%; margin-top: 2%;">
+        <div class="card">
+          <div class="card-header">
+            {{ el.title }}
+            {% if el.status == 'Done' %}
+            <span class="badge badge-pill badge-success">{{ el.status }}</span>
+            {% elif el.status == 'Undone' %}
+            <span class="badge badge-pill badge-warning">{{ el.status }}</span>
+            {% else %}
+            <span class="badge badge-pill badge-primary">{{ el.status }}</span>
+            {% endif %}
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{ el.task }}</p>
+            <a href="#"class="btn btn-primary">Check task</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+  {% else %}
+    <div style="text-align: center; max-width: 30%; margin-left: 35%; margin-right: 35%; margin-top: 2%;">
+      <div class="alert alert-danger" role="alert">
+        Sorry, no tasks yet...
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
