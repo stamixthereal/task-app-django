@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    tasks = Task.objects.filter(user=request.user.id)
+    tasks = Task.objects.filter(user=request.user.id).order_by('-id')
     return render(request, 'main/index.html', {'title': 'My tickets', 'tasks': tasks})
 
 @login_required

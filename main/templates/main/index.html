@@ -11,24 +11,27 @@
 
 {% block list %}
   {% if tasks %}
+  <div style="max-width: 70%; margin-left: 15%; margin-right: 15%; margin-top: 2%; margin-bottom: 2%;">
+    <h1>Your tickets</h1>
+  </div>
       {% for el in tasks %}
-      <div style="max-width: 70%; margin-left: 15%; margin-right: 15%; margin-top: 2%;">
-        <div class="card">
-          <div class="card-header">
-            {{ el.title }}
-            {% if el.status == 'Done' %}
-            <span class="badge badge-pill badge-success">{{ el.status }}</span>
-            {% elif el.status == 'Undone' %}
-            <span class="badge badge-pill badge-warning">{{ el.status }}</span>
-            {% else %}
-            <span class="badge badge-pill badge-primary">{{ el.status }}</span>
-            {% endif %}
+      <div style="max-width: 70%; margin-left: 15%; margin-right: 15%; margin-top: 2%; margin-bottom: 2%;">
+          <div class="card">
+            <div class="card-header">
+              {{ el.title }}
+              {% if el.status == 'Done' %}
+              <span class="badge badge-pill badge-success">{{ el.status }}</span>
+              {% elif el.status == 'Undone' %}
+              <span class="badge badge-pill badge-warning">{{ el.status }}</span>
+              {% else %}
+              <span class="badge badge-pill badge-primary">{{ el.status }}</span>
+              {% endif %}
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{ el.task }}</p>
+              <a href="{% url 'task_detail' pk=el.pk %}" class="btn btn-primary">Check task</a>
+            </div>
           </div>
-          <div class="card-body">
-            <p class="card-text">{{ el.task }}</p>
-            <a href="#"class="btn btn-primary">Check task</a>
-          </div>
-        </div>
       </div>
       {% endfor %}
   {% else %}

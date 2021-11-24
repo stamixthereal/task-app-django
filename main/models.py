@@ -26,13 +26,3 @@ class Task(models.Model):
     class Meta:
         verbose_name = 'TASK'
         verbose_name_plural = 'TASKS'
-
-class Message(models.Model):
-
-    task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    name = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    body = models.TextField('Body')
-    date = models.DateTimeField(default=timezone.now)
-
-    def __str__(self) -> str:
-        return self.__all__
