@@ -10,31 +10,38 @@ Details
 {% endblock %}
 
 {% block detail %}
-<div class="card" style="max-width: 70%; margin-left: 15%; margin-right: 15%; margin-top: 2%; box-shadow: 0px 2px 5px rgb(212, 212, 212);">
+<div class="card" style="justify-content: center; margin: 5% 5% 2% 5%; box-shadow: 0px 2px 5px rgb(212, 212, 212);">
     <div class="card-header bd-dark">
-        <h1 style="text-align: center;">{{ task.title }}
-            {% if task.status == 'Done' %}
-            <span class="badge badge-pill badge-success">{{ task.status }}</span>
-            {% elif task.status == 'Undone' %}
-            <span class="badge badge-pill badge-warning">{{ task.status }}</span>
-                <a href="update/">
-                    <button type="button" class="btn btn-success">
-                        <form method="post" action="">
-                            {% csrf_token %}
-                            Mark as done
-                        </form>
-                    </button>
-                </a>
-            {% else %}
-            <span class="badge badge-pill badge-primary">{{ task.status }}</span>
-            {% endif %}
-        </h1>
+        <h1 style="text-align: center;">Title: {{ task.title }}</h1>
+        {% if task.status == 'Done' %}
+            <h4 style="text-align: center;">Status: <span class="badge badge-pill badge-success">{{ task.status }}</span></h4>
+        {% elif task.status == 'Undone' %}
+            <h4 style="text-align: center;">Status: <span class="badge badge-pill badge-warning">{{ task.status }}</span></h4>
+            
+            
+        {% endif %}
     </div>
     <div class="container">
-        <div style="padding-left: 2%; padding-top: 1%; padding-bottom: 1%; max-height: 30%;"><b>Description: </b><br>{{ task.task }}</div>
-        <div style="padding-left: 85%; padding-bottom: 2%;">
-            <a href="{% url 'index' %}"><button type="button" class="btn btn-outline-primary">Go back to tasks</button></a>
+        <div style="padding-left: 2%; padding-top: 2%; padding-bottom: 4%; max-height: 30%;">
+            <b>Description: </b>
+            <br>{{ task.task }}
         </div>
     </div>
+    
 </div>
+<section style="display: flex; justify-content: center; margin-top: 3%;">
+    <a href="{% url 'index' %}" style="margin-right: 1%;">
+        <button type="button" class="btn btn-outline-primary">Go back</button>
+    </a>
+    {% if task.status == 'Undone' %}
+    <a href="update/" style="margin-left: 1%;">
+        <button type="button" class="btn btn-outline-success">
+            <form method="post" action="">
+                {% csrf_token %}
+                Done
+            </form>
+        </button>
+    </a>
+    {% endif %}
+</section>
 {% endblock %}

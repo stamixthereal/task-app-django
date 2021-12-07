@@ -5,17 +5,25 @@
 {% endblock %}
 
 {% block href%}
-<a class="nav-item nav-link active" href="{% url 'index' %}">My tasks<span class="sr-only">(current)</span></a>
-<a class="nav-item nav-link" href="{% url 'new_task' %}">Write new one</a>
+<li class="nav-item active">
+  <a class="nav-link" href="{% url 'index' %}">My tasks<span class="sr-only">(current)</span></a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'new_task' %}">Write new one</a>
+</li>
+
+<!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#link1" class="navelement">Link 1</a></li>
+
+<li><a data-toggle="collapse" data-target=".navbar-collapse" href="#link2" class="navelement">Link 2</a></li> -->
 {% endblock %}
 
 {% block list %}
   {% if tasks %}
-  <div style="max-width: 70%; margin-left: 15%; margin-right: 15%; margin-top: 2%; margin-bottom: 2%;">
-    <h1>Your tickets</h1>
+  <div style="max-width: 70%; margin-left: 15%; margin-right: 15%; margin-top: 3%; margin-bottom: 3%;">
+    <h1 style="text-align: center;">Your tickets</h1>
   </div>
       {% for el in tasks %}
-      <div style="max-width: 70%; margin-left: 15%; margin-right: 15%; margin-top: 2%; margin-bottom: 2%;">
+      <div style="justify-content: center; margin: 2% 5% 5%;">
           <div class="card">
             <div class="card-header">
               {% if el.status == 'Done' %}
@@ -47,7 +55,7 @@
       </div>
       {% endfor %}
   {% else %}
-    <div style="text-align: center; max-width: 30%; margin-left: 35%; margin-right: 35%; margin-top: 2%;">
+    <div style="text-align: center; justify-content: center;">
       <div class="alert alert-danger" role="alert">
         Sorry, no tasks yet...
       </div>

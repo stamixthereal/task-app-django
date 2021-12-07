@@ -12,8 +12,8 @@ Register
 {% endblock %}
 
 {% block auth %}
-<form method="post" style="margin-top: 2%; max-width: 50%; margin-left: 25%; margin-right: 25%;">
-    <h1>Register account</h1>
+<form method="post" style="justify-content: center; margin: 3% 9% 0 9%;">
+    <h1 style="text-align: center; margin-bottom: 5%; margin-top: 5%;">Register account</h1>
     {% csrf_token %}
     {{ form|crispy }}
     <small>Already have an account?</small>

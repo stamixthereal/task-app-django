@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Task
-from .forms import TaskForm
+from .forms import TaskForm, UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic.detail import DetailView
-from django.contrib.auth.forms import UserCreationForm
 
 
 @login_required
@@ -41,14 +40,14 @@ def register(request):
 
     message = ''
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('login')
         else:
             message = 'Something wrong...'
     else:
-        form = UserCreationForm()
+        form = UserRegisterForm()
     return render(request, 'main/register.html', {'form': form, 'message': message})
 
 
