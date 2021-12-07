@@ -5,29 +5,34 @@ Details
 {% endblock %}
 
 {% block href%}
-<a class="nav-item nav-link active" href="{% url 'index' %}">My tickets<span class="sr-only">(current)</span></a>
+<a class="nav-item nav-link active" href="{% url 'index' %}">My tasks<span class="sr-only">(current)</span></a>
 <a class="nav-item nav-link" href="{% url 'new_task' %}">Write new one</a>
 {% endblock %}
 
 {% block detail %}
 <div class="card" style="max-width: 70%; margin-left: 15%; margin-right: 15%; margin-top: 2%; box-shadow: 0px 2px 5px rgb(212, 212, 212);">
     <div class="card-header bd-dark">
-        <h1>Title: {{ task.title }}
+        <h1>{{ task.title }}
             {% if task.status == 'Done' %}
             <span class="badge badge-pill badge-success">{{ task.status }}</span>
             {% elif task.status == 'Undone' %}
             <span class="badge badge-pill badge-warning">{{ task.status }}</span>
+            <form method="post" action="">
+                {% csrf_token %}
+                <a href="update/">
+                    <button type="button" class="btn btn-success">Mark as done</button>
+                </a>
+            </form>
             {% else %}
             <span class="badge badge-pill badge-primary">{{ task.status }}</span>
             {% endif %}
-            
         </h1>
     </div>
     <div class="container">
         <div style="padding-top: 1%; padding-bottom: 1%; max-height: 30%;"><b>Description: </b><br>{{ task.task }}</div>
-    </div>
-    <div style="padding-left: 91%; padding-bottom: 2%;">
-        <a href="{% url 'index' %}"><button type="button" class="btn btn-outline-primary">Go back</button></a>
+        <div style="padding-left: 85%; padding-bottom: 2%;">
+            <a href="{% url 'index' %}"><button type="button" class="btn btn-outline-primary">Go back to tasks</button></a>
+        </div>
     </div>
 </div>
 {% endblock %}

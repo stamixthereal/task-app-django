@@ -52,9 +52,18 @@ def register(request):
     return render(request, 'main/register.html', {'form': form, 'message': message})
 
 
+def mark_task_done(request, pk):
+    """Changing tasks's status to Done"""
+
+    task = Task.objects.get(id=pk)
+    task.status = 'Done'
+    task.save()
+    return redirect('index')
+
+
 class TaskDetailView(DetailView):
     """Details of each task"""
 
     model = Task
     template_name = 'main/detail.html'
-    context_object_name = 'task'
+    context_object_name = 'task'  

@@ -8,11 +8,11 @@ class TaskForm(ModelForm):
         widgets = {
             'title': widgets.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Enter ticket\'s name'
+                'placeholder': 'Enter task\'s name'
             }),
             'task': widgets.Textarea(attrs={
                 'class': 'form-control',
                 'id': 'exampleInputPassword1',
-                'placeholder': 'Describe your problem'
+                'placeholder': 'Describe your task here'
             })
         }

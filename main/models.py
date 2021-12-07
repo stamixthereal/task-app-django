@@ -10,14 +10,18 @@ class Task(models.Model):
                     ('Undone', 'Undone')
                     )
                     
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField('Name', max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    title = models.CharField('Name', max_length=60)
     task = models.TextField('Description')
     publish = models.DateTimeField(default=timezone.now)
-    status = models.CharField(choices=STATUS_CHOICES, default='Undone')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Undone')
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.title
+
+    def mark_as_done(self):
+        self.status = 'Done'
+        self.save()
 
     class Meta:
         verbose_name = 'TASK'
