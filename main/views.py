@@ -61,6 +61,14 @@ def mark_task_done(request, pk):
     return redirect('index')
 
 
+def delete_task(request, pk):
+    """Deleting task"""
+
+    task = Task.objects.get(id=pk)
+    task.delete()
+    return redirect('index')
+
+
 class TaskDetailView(DetailView):
     """Details of each task"""
 

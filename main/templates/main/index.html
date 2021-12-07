@@ -18,18 +18,30 @@
       <div style="max-width: 70%; margin-left: 15%; margin-right: 15%; margin-top: 2%; margin-bottom: 2%;">
           <div class="card">
             <div class="card-header">
-              {{ el.title }}
               {% if el.status == 'Done' %}
+              <s>{{ el.title }}</s>
               <span class="badge badge-pill badge-success">{{ el.status }}</span>
-              {% elif el.status == 'Undone' %}
-              <span class="badge badge-pill badge-warning">{{ el.status }}</span>
               {% else %}
-              <span class="badge badge-pill badge-primary">{{ el.status }}</span>
+              {{ el.title }}
+              <span class="badge badge-pill badge-warning">{{ el.status }}</span>
               {% endif %}
+              <a href="delete/{{ el.id }}">
+                <button type="button" class="close">
+                  <form method="post" action="">
+                    {% csrf_token %}
+                    &times;
+                  </form>
+                </button>
+              </a>
             </div>
             <div class="card-body">
+              {% if el.status == 'Done' %}
+              <p class="card-text"><s>{{ el.task }}</s></p>
+              <a href="{% url 'task_detail' pk=el.pk %}" class="btn btn-primary">Check task</a>
+              {% else %}
               <p class="card-text">{{ el.task }}</p>
               <a href="{% url 'task_detail' pk=el.pk %}" class="btn btn-primary">Check task</a>
+              {% endif %}
             </div>
           </div>
       </div>
