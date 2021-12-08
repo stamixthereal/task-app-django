@@ -10,7 +10,7 @@ def index(request):
     """Rendering home page"""
 
     tasks = Task.objects.filter(user=request.user.id).order_by('-id')
-    return render(request, 'main/index.html', {'title': 'My tickets', 'tasks': tasks})
+    return render(request, 'main/index.html', {'title': 'My tasks', 'tasks': tasks})
 
 
 @login_required

@@ -11,16 +11,12 @@
 <li class="nav-item">
   <a class="nav-link" href="{% url 'new_task' %}">Write new one</a>
 </li>
-
-<!-- <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#link1" class="navelement">Link 1</a></li>
-
-<li><a data-toggle="collapse" data-target=".navbar-collapse" href="#link2" class="navelement">Link 2</a></li> -->
 {% endblock %}
 
 {% block list %}
   {% if tasks %}
   <div style="max-width: 70%; margin-left: 15%; margin-right: 15%; margin-top: 3%; margin-bottom: 3%;">
-    <h1 style="text-align: center;">Your tickets</h1>
+    <h1 style="text-align: center;">Your tasks</h1>
   </div>
       {% for el in tasks %}
       <div style="justify-content: center; margin: 2% 5% 5%;">
@@ -45,10 +41,10 @@
             <div class="card-body">
               {% if el.status == 'Done' %}
               <p class="card-text"><s>{{ el.task }}</s></p>
-              <a href="{% url 'task_detail' pk=el.pk %}" class="btn btn-primary">Check task</a>
+              <a href="{% url 'task_detail' pk=el.pk %}" class="btn btn-primary">Details</a>
               {% else %}
               <p class="card-text">{{ el.task }}</p>
-              <a href="{% url 'task_detail' pk=el.pk %}" class="btn btn-primary">Check task</a>
+              <a href="{% url 'task_detail' pk=el.pk %}" class="btn btn-primary">Details</a>
               {% endif %}
             </div>
           </div>
