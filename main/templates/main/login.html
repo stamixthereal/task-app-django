@@ -12,7 +12,7 @@ Login
 {% endblock %}
 
 {% block auth %}
-<form method="post" style="justify-content: center; margin: 3% 9% 0 9%;">
+<form method="post" style="justify-content: center; margin: 3% 9% 25% 9%;">
     <h1 style="text-align: center; margin-bottom: 5%; margin-top: 5%;">Login</h1>
     {% csrf_token %}
     {{ form|crispy }}
