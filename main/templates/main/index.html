@@ -21,35 +21,34 @@
     <div style="margin-bottom: 15%;">
       {% for el in tasks %}
       <div style="justify-content: center; margin: 2% 5% 5%;">
-          <div class="card">
-            <div class="card-header">
-              {% if el.status == 'Done' %}
-              <s>{{ el.title }}</s>
-              <span class="badge badge-pill badge-success">{{ el.status }}</span>
-              {% else %}
-              {{ el.title }}
-              <span class="badge badge-pill badge-warning">{{ el.status }}</span>
-              {% endif %}
-              <a href="delete/{{ el.id }}">
-                <button type="button" class="close">
-                  <form method="post" action="">
-                    {% csrf_token %}
-                    &times;
-                  </form>
-                </button>
-              </a>
-            </div>
-            <div class="card-body">
-              {% if el.status == 'Done' %}
+        <div class="card">
+          <div class="card-header">
+            {% if el.status == 'Done' %}
+            <s>{{ el.title }}</s>
+            <span class="badge badge-pill badge-success">{{ el.status }}</span>
+            {% else %}
+            {{ el.title }}
+            <span class="badge badge-pill badge-warning">{{ el.status }}</span>
+            {% endif %}
+            <a href="delete/{{ el.id }}">
+              <button type="button" class="close">
+                <form method="post" action="">
+                  {% csrf_token %}
+                  &times;
+                </form>
+              </button>
+            </a>
+          </div>
+          <div class="card-body">
+            {% if el.status == 'Done' %}
               <p class="card-text"><s>{{ el.task }}</s></p>
               <a href="{% url 'task_detail' pk=el.pk %}" class="btn btn-primary">Details</a>
-              {% else %}
+            {% else %}
               <p class="card-text">{{ el.task }}</p>
               <a href="{% url 'task_detail' pk=el.pk %}" class="btn btn-primary">Details</a>
-              {% endif %}
-            </div>
+            {% endif %}
           </div>
-      </div>
+        </div>
       {% endfor %}
     </div>
   {% else %}
