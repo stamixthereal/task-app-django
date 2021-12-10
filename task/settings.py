@@ -1,10 +1,14 @@
 import os
 import dj_database_url
 import django_heroku
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'django-insecure-h7ds!)*0llgz78#i6kz624bve$40e1jj5%kx^o+r2^g3^emz18'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = False
 
