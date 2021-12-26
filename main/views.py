@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
-from .models import Task
-from .forms import TaskForm, UserRegisterForm
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, render
 from django.views.generic.detail import DetailView
+
+from .forms import TaskForm, UserRegisterForm
+from .models import Task
 
 
 @login_required
