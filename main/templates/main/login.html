@@ -12,12 +12,14 @@ Login
 {% endblock %}
 
 {% block auth %}
-<form method="post" style="justify-content: center; margin: 3% 9% 25% 9%;">
-    <h1 style="text-align: center; margin-bottom: 5%; margin-top: 5%;">Login</h1>
-    {% csrf_token %}
-    {{ form|crispy }}
-    <small>Don't have an account?</small>
-    <a href="{% url 'register' %}"><small>Register</small></a><br><br>
-    <button type="submit" class="btn btn-primary">Login</button>
-</form> 
+<div style="width: 100%; max-width: 700px; margin: 0 auto;">
+    <form method="post" style="justify-content: center; margin: 3% 9% 3% 9%;">
+        <h1 style="text-align: center; margin-bottom: 2%; margin-top: 2%;">Login</h1>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <small>Don't have an account?</small>
+        <a href="{% url 'register' %}"><small>Register</small></a><br><br>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
 {% endblock %}

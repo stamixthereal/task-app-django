@@ -1,5 +1,28 @@
 {% extends "main/base.html" %}
 
+{%block styles %}
+<style>
+  @media (max-width: 4000px){
+    .outer {
+      margin: 4% 5% 4% 5%;
+    }
+  }
+
+  @media (max-width: 500px){
+    .outer {
+      margin-top: 7%;
+    }
+  }
+
+  @media (max-width: 380px){
+    .outer {
+      margin-top: 9%;
+      margin-bottom: 8%;
+    }
+  }
+</style>
+{% endblock %}
+
 {% block title %}
 Details
 {% endblock %}
@@ -10,37 +33,44 @@ Details
 {% endblock %}
 
 {% block detail %}
-<div class="card" style="justify-content: center; margin: 5% 5% 2% 5%; box-shadow: 0px 2px 5px rgb(212, 212, 212);">
-    <div class="card-header bd-dark">
-        <h1 style="text-align: center;">
-            Title: {{ task.title }}
-        </h1>
-        {% if task.status == 'Done' %}
-            <h4 style="text-align: center;">Status: <span class="badge badge-pill badge-success">{{ task.status }}</span></h4>
-        {% elif task.status == 'Undone' %}
-            <h4 style="text-align: center;">Status: <span class="badge badge-pill badge-warning">{{ task.status }}</span></h4>
-        {% endif %}
-    </div>
-    <div class="container">
-        <div style="padding-left: 2%; padding-top: 2%; padding-bottom: 4%; max-height: 30%;">
-            <b>Description: </b>
-            <br>{{ task.task }}
+<div style="width: 100%; max-width: 700px; margin: 0 auto;">
+
+    <div class="outer">
+        <div class="card" style="justify-content: center; box-shadow: 0px 2px 5px rgb(212, 212, 212);">
+            <div class="card-header bd-dark">
+                <h2 style="text-align: center;">
+                    Title: {{ task.title }}
+                </h2>
+                {% if task.status == 'Done' %}
+                    <h5 style="text-align: center;">Status: <span class="badge badge-pill badge-success">{{ task.status }}</span></h5>
+                {% elif task.status == 'Undone' %}
+                    <h5 style="text-align: center;">Status: <span class="badge badge-pill badge-warning">{{ task.status }}</span></h5>
+                {% endif %}
+            </div>
+            <div class="container">
+                <div style="padding-left: 2%; padding-top: 2%; padding-bottom: 4%; max-height: 30%;">
+                    <b>Description: </b>
+                    <br>{{ task.task }}
+                </div>
+            </div>
         </div>
     </div>
+
+    <section style="display: flex; justify-content: center;">
+        <a href="{% url 'index' %}" style="margin-right: 1%;">
+            <button type="button" class="btn btn-outline-primary">Go back</button>
+        </a>
+        {% if task.status == 'Undone' %}
+        <a href="update/" style="margin-left: 1%;">
+            <button type="button" class="btn btn-outline-success">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    Done
+                </form>
+            </button>
+        </a>
+        {% endif %}
+    </section>
+    
 </div>
-<section style="display: flex; justify-content: center; margin-top: 3%;">
-    <a href="{% url 'index' %}" style="margin-right: 1%;">
-        <button type="button" class="btn btn-outline-primary">Go back</button>
-    </a>
-    {% if task.status == 'Undone' %}
-    <a href="update/" style="margin-left: 1%;">
-        <button type="button" class="btn btn-outline-success">
-            <form method="post" action="">
-                {% csrf_token %}
-                Done
-            </form>
-        </button>
-    </a>
-    {% endif %}
-</section>
 {% endblock %}
